@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Güç Kaynağı Tasarımı - Taha Baykara</title>
+    <style>
+        /* Ana Sayfa ile Aynı Temel Ayarlar */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0f0f12; color: #e2e8f0; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+
+        /* Navigasyon Barı */
+        header { position: fixed; top: 0; left: 0; width: 100%; background-color: rgba(15, 15, 18, 0.95); border-bottom: 1px solid #222530; z-index: 1000; }
+        nav { max-width: 1100px; margin: 0 auto; padding: 1.2rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.3rem; font-weight: 700; color: #00ffcc; text-transform: uppercase; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a:hover { color: #00ffcc; }
+
+        /* Detay Sayfası Tasarımı */
+        .article-container { max-width: 800px; margin: 8rem auto 4rem auto; padding: 0 2rem; }
+        .article-header { border-bottom: 1px solid #222530; padding-bottom: 2rem; margin-bottom: 2rem; }
+        .article-tag { font-size: 0.85rem; font-weight: 600; color: #00ffcc; background-color: rgba(0, 255, 204, 0.1); padding: 0.3rem 0.8rem; border-radius: 4px; text-transform: uppercase; display: inline-block; margin-bottom: 1rem; }
+        .article-title { font-size: 2.5rem; color: #ffffff; margin-bottom: 1rem; line-height: 1.2; }
+        
+        /* İçerik Bölümleri */
+        .content-section { margin-bottom: 3rem; }
+        .content-section h2 { font-size: 1.5rem; color: #00ffcc; margin-bottom: 1rem; }
+        .content-section p { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 1.5rem; }
+        
+        /* Görsel ve Video Alanları */
+        .content-media { width: 100%; background-color: #16161a; border: 1px solid #222530; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; text-align: center; }
+        .content-media img { max-width: 100%; border-radius: 4px; }
+        .media-caption { font-size: 0.9rem; color: #64748b; margin-top: 0.5rem; display: block; }
+        
+        /* Geri Dön Butonu */
+        .back-btn { display: inline-block; margin-top: 2rem; padding: 0.8rem 1.5rem; background-color: #16161a; border: 1px solid #222530; color: #fff; border-radius: 4px; transition: all 0.3s; }
+        .back-btn:hover { border-color: #00ffcc; color: #00ffcc; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html">TAHA BAYKARA</a></div>
+            <ul class="nav-links">
+                <li><a href="index.html#projeler">Projeler</a></li>
+                <li><a href="index.html#blog">Blog</a></li>
+                <li><a href="index.html#gezi">Gezi Günlüğü</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="article-container">
+        
+        <div class="article-header">
+            <span class="article-tag">Altium Designer</span>
+            <h1 class="article-title">Güç Kaynağı Kart Tasarımı</h1>
+            <p style="color: #94a3b8;">Tarih: Mayıs 2026 | Durum: Üretim Aşamasında</p>
+        </div>
+
+        <section class="content-section">
+            <h2>Projenin Amacı ve İhtiyaç</h2>
+            <p>Laboratuvar ortamında test yaparken sürekli dışarıdan hazır güç kaynaklarına bağımlı kalmak yerine, kendi laboratuvar masam için minimum gürültü seviyesine sahip, EMI filtreli ve regüleli bir güç kaynağı tasarlamaya karar verdim. Bu proje aynı zamanda PCB tasarımında şebeke gerilimi (220V) ile düşük DC gerilimi aynı kartta izole bir şekilde yönetme pratiği yapmamı sağladı.</p>
+        </section>
+
+        <section class="content-section">
+            <h2>Şema Çizimi ve Simülasyon Sonuçları</h2>
+            <p>Devrenin girişinde kullandığım EMI filtresi sayesinde şebekeden gelen yüksek frekanslı gürültüleri bastırdım. Altium Designer üzerinde çizdiğim şema ve komponent yerleşimleri aşağıdaki gibidir:</p>
+            
+            <div class="content-media">
+                <img src="sema-fotografi.jpg" alt="Devre Şeması">
+                <span class="media-caption">Altium Designer Şema Görünümü</span>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Üretim ve Lehimleme Süreci</h2>
+            <p>PCB basımı tamamlandıktan sonra komponentleri dizmeye başladım. Özellikle güç hatlarının (trace) kalınlıklarını akım taşıma kapasitelerine göre optimize ettim.</p>
+            
+            <div class="content-media">
+                <img src="uretim-fotografi.jpg" alt="Üretim Aşaması">
+                <span class="media-caption">Bileşenlerin dizgi ve lehimleme aşaması</span>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Sonuç ve Çalışma Testi</h2>
+            <p>Devreye ilk enerjiyi verdiğimde voltaj regülasyonunun tamamen stabil çalıştığını gördüm. Çıkıştan aldığım sinyali osiloskop ile incelediğimde dalgalanma (ripple) miktarının beklediğim toleranslar içinde olduğunu doğruladım.</p>
+            
+            <div class="content-media">
+                <img src="sonuc-fotografi.jpg" alt="Çalışan Devre">
+                <span class="media-caption">Devrenin laboratuvar ortamında çalıştırılması</span>
+            </div>
+        </section>
+
+        <a href="index.html" class="back-btn">← Ana Sayfaya Dön</a>
+
+    </main>
+
+</body>
+</html>
