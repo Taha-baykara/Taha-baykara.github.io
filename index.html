@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taha BAYKARA'nın web sitesi </title>
+    <title>TAHA BAYKARANIN web sitesi</title>
     <style>
         /* Genel Ayarlar */
         * {
@@ -45,6 +45,7 @@
             font-weight: 700;
             color: #00ffcc;
             letter-spacing: 1px;
+            text-transform: uppercase;
         }
         .nav-links {
             display: flex;
@@ -124,6 +125,8 @@
             border-radius: 8px;
             overflow: hidden;
             transition: transform 0.3s, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
         }
         .card:hover {
             transform: translateY(-5px);
@@ -132,18 +135,22 @@
         .card-img {
             width: 100%;
             height: 200px;
-            background-color: #222530; /* Görsel yüklenene kadar geçici arka plan */
+            background-color: #222530;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #475569;
             font-size: 0.9rem;
+            object-fit: cover;
         }
         .card-content {
             padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
         .card-tag {
-            display: inline-block;
+            align-self: flex-start;
             font-size: 0.75rem;
             font-weight: 600;
             color: #00ffcc;
@@ -161,11 +168,13 @@
         .card p {
             color: #94a3b8;
             font-size: 0.95rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
         }
         .card-footer {
             font-size: 0.85rem;
             color: #64748b;
+            margin-top: auto;
         }
 
         /* Footer Bölümü */
@@ -213,22 +222,72 @@
             <div class="grid">
                 
                 <div class="card">
-                    <img src="led.jpg.png" class="card-img" style="object-fit: cover;">
+                    <img src="led.jpg.png" class="card-img" style="object-fit: contain; background-color: #fff;" alt="Güç Kaynağı">
                     <div class="card-content">
                         <span class="card-tag">Altium Designer</span>
                         <h3>Güç Kaynağı Kart Tasarımı</h3>
                         <p>EMI filtre aşamasından çıkış katına kadar optimize edilmiş, minimum gürültü seviyesine sahip regüleli güç kaynağı devresi.</p>
-                        <div class="card-footer">Durum: Üretim aşamasında</div>
+                        <div class="card-footer">Durum: Üretim Aşamasında</div>
                     </div>
                 </div>
 
                 <div class="card">
-                    <div class="card-img">[Görsel Alanı: Proje 2]</div>
+                    <div class="card-img">[Görsel Alanı: STM32/ESP32]</div>
                     <div class="card-content">
                         <span class="card-tag">Gömülü Sistem</span>
                         <h3>STM32 ve ESP32 Tabanlı Kontrolcü</h3>
                         <p>Sensör verilerini işleyip Wi-Fi üzerinden sunucuya aktaran, endüstriyel standartlara uygun donanım ve yazılım mimarisi.</p>
-                        <div class="card-footer">Durum: PCB tasarım aşamasında</div>
+                        <div class="card-footer">Durum: Tamamlandı</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img">[Görsel Alanı: NeonCraft]</div>
+                    <div class="card-content">
+                        <span class="card-tag">Girişim & Donanım</span>
+                        <h3>NeonCraft: Aydınlatma Kontrol Kartı</h3>
+                        <p>Pleksi üzeri lazer kesim neon tabelalar için tasarladığım, animasyon modları içeren özel aydınlatma sürücü kartı.</p>
+                        <div class="card-footer">Durum: Prototip Aşamasında</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img">[Görsel Alanı: Motor Sürücü]</div>
+                    <div class="card-content">
+                        <span class="card-tag">10 Projelik Seri</span>
+                        <h3>Çift Kanallı DC Motor Sürücü Devresi</h3>
+                        <p>Şubat ayında başlattığım yoğun proje kampının bir parçası olarak tasarladığım yüksek akım kapasiteli H-Köprüsü devresi.</p>
+                        <div class="card-footer">Durum: Tamamlandı</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img">[Görsel Alanı: Çok Katmanlı PCB]</div>
+                    <div class="card-content">
+                        <span class="card-tag">Altium Pratiği</span>
+                        <h3>4 Katmanlı (4-Layer) PCB Yönlendirme</h3>
+                        <p>İç katmanlarda GND ve VCC düzlemleri kullanılarak sinyal bütünlüğünün sağlandığı ileri seviye PCB çizim denemesi.</p>
+                        <div class="card-footer">Durum: Çizim Aşamasında</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img">[Görsel Alanı: Röle Kartı]</div>
+                    <div class="card-content">
+                        <span class="card-tag">IoT & Otomasyon</span>
+                        <h3>ESP32 Akıllı Ev Röle Kontrolcüsü</h3>
+                        <p>Mobil arayüz üzerinden evdeki 220V cihazları güvenli bir şekilde kontrol etmeyi sağlayan optokuplör izolasyonlu devre.</p>
+                        <div class="card-footer">Durum: Test Ediliyor</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img">[Görsel Alanı: Sensör Modülü]</div>
+                    <div class="card-content">
+                        <span class="card-tag">10 Projelik Seri</span>
+                        <h3>Çoklu Çevresel Sensör Okuma Kartı</h3>
+                        <p>Sıcaklık, nem ve hava kalitesi sensörlerinin tek bir I2C hattı üzerinden okunup işlendiği veri toplama modülü.</p>
+                        <div class="card-footer">Durum: Tamamlandı</div>
                     </div>
                 </div>
 
@@ -241,9 +300,9 @@
                 
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-tag">Mühendislik</span>
+                        <span class="card-tag">Donanım</span>
                         <h3>PCB Çiziminde Cross-talk Nasıl Önlenir?</h3>
-                        <p>Yüksek frekanslı hatlarda sinyal bütünlüğünü korumak ve hatlar arası etkileşimi en aza indirmek için dikkat edilmesi gereken yollar.</p>
+                        <p>Yüksek frekanslı hatlarda sinyal bütünlüğünü korumak ve hatlar arası etkileşimi en aza indirmek için dikkat edilmesi gereken yönlendirme teknikleri.</p>
                         <div class="card-footer">Mayıs 2026</div>
                     </div>
                 </div>
@@ -251,9 +310,54 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-tag">Otomotiv</span>
-                        <h3>Thru-hole ile smd farkları</h3>
-                        <p>Thru-hole ile smd tipi pcb kartların avantajları , dezavantajları...</p>
+                        <h3>1.3 Multijet Motorlarda EGR Sorunları</h3>
+                        <p>Fiat Egea aracımdaki tecrübelerimden yola çıkarak EGR valfi tıkanması, performans kaybı ve kurum temizleme süreçlerinin teknik analizi.</p>
                         <div class="card-footer">Nisan 2026</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-tag">Erkek Giyim</span>
+                        <h3>Kapsül Gardırop: Deri Ceket ve Chino Uyumu</h3>
+                        <p>Az ama öz parçalarla şık kombinler yaratmak. Renk paletleri, doğru kalıp seçimi ve günlük hayatta deri ceket kullanımı üzerine notlar.</p>
+                        <div class="card-footer">Mart 2026</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-tag">Otomotiv</span>
+                        <h3>AdBlue Kristalleşmesi ve Sistematik Çözümler</h3>
+                        <p>Modern dizel araçların en büyük kronik problemi olan AdBlue enjektör tıkanmaları ve egzoz sistemindeki basınç hatalarına mühendislik bakışı.</p>
+                        <div class="card-footer">Şubat 2026</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-tag">Oyun & Tasarım</span>
+                        <h3>Açık Dünya Görev Tasarımları: RDR2 ve Valhalla</h3>
+                        <p>Red Dead Redemption 2'nin hikaye anlatım derinliği ile Assassin's Creed Valhalla'nın karakter gelişim mekaniklerinin karşılaştırmalı analizi.</p>
+                        <div class="card-footer">Ocak 2026</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-tag">Yaşam Tarzı</span>
+                        <h3>Kışlık Parfüm Seçimi ve Kalıcılık Analizi</h3>
+                        <p>Armani Stronger With You serisi, Bentley'nin odunsu notaları ve klon parfümlerin performans/fiyat oranları üzerine kişisel deneyimlerim.</p>
+                        <div class="card-footer">Aralık 2025</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-tag">Ezoterik</span>
+                        <h3>Sembollerin Dili: Rüyalar ve Yorumlamalar</h3>
+                        <p>Bilinçaltının ürettiği imgeleri, fincan telvelerindeki şekilleri ve günlük hayattaki sembolleri analitik bir bakış açısıyla okuma denemeleri.</p>
+                        <div class="card-footer">Ekim 2025</div>
                     </div>
                 </div>
 
@@ -267,10 +371,29 @@
                 <div class="card">
                     <div class="card-img">[Görsel Alanı: Kalkan]</div>
                     <div class="card-content">
-                        <span class="card-tag">Rota</span>
-                        <h3>Antalya / Kalkan Yolculuğu</h3>
-                        <p>Akdeniz'in en virajlı ama en güzel manzaralı yollarından geçerek yaptığımız kısa bir kaçamak ve rota detayları.</p>
+                        <span class="card-tag">Akdeniz Rotaları</span>
+                        <h3>Antalya / Kalkan Kaçamağı</h3>
+                        <p>Nisan sonunda arkadaşlarla organize ettiğimiz, Akdeniz'in en virajlı ama en güzel manzaralı yollarından geçerek yaptığımız Kalkan gezisi detayları.</p>
                         <div class="card-footer">Nisan 2026</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img">[Görsel Alanı: Erciyes]</div>
+                    <div class="card-content">
+                        <span class="card-tag">Doğa & Dağ</span>
+                        <h3>Erciyes Dağı'nda Temiz Hava</h3>
+                        <p>Üniversite kampüsünden çıkıp Kayseri'nin zirvesine doğru yaptığımız kısa bir kış sonu yürüyüşü ve bölgenin atmosferi.</p>
+                        <div class="card-footer">Mart 2026</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-tag">Şehir İçi</span>
+                        <h3>Kayseri'de Hafta Sonu Rotası</h3>
+                        <p>Tarihi sokaklar, yerel lezzet durakları ve doğduğum şehirde günlük hayat koşturmacasından uzaklaşmak için keşfettiğim sakin köşeler.</p>
+                        <div class="card-footer">Şubat 2026</div>
                     </div>
                 </div>
 
