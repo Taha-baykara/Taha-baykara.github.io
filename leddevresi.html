@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Güç Kaynağı Tasarımı - Taha Baykara</title>
+    <title>İlk LED Devresi - Taha Baykara</title>
     <style>
         /* Ana Sayfa ile Aynı Temel Ayarlar */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
@@ -30,7 +30,7 @@
         
         /* Görsel ve Video Alanları */
         .content-media { width: 100%; background-color: #16161a; border: 1px solid #222530; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; text-align: center; }
-        .content-media img { max-width: 100%; border-radius: 4px; }
+        .content-media img { max-width: 100%; border-radius: 4px; background-color: #fff; }
         .media-caption { font-size: 0.9rem; color: #64748b; margin-top: 0.5rem; display: block; }
         
         /* Geri Dön Butonu */
@@ -55,43 +55,28 @@
         
         <div class="article-header">
             <span class="article-tag">Altium Designer</span>
-            <h1 class="article-title">Güç Kaynağı Kart Tasarımı</h1>
-            <p style="color: #94a3b8;">Tarih: Mayıs 2026 | Durum: Üretim Aşamasında</p>
+            <h1 class="article-title">İlk LED Devresi Tasarımı</h1>
+            <p style="color: #94a3b8;">Durum: Üretim Aşamasında</p>
         </div>
 
         <section class="content-section">
-            <h2>Projenin Amacı ve İhtiyaç</h2>
-            <p>Laboratuvar ortamında test yaparken sürekli dışarıdan hazır güç kaynaklarına bağımlı kalmak yerine, kendi laboratuvar masam için minimum gürültü seviyesine sahip, EMI filtreli ve regüleli bir güç kaynağı tasarlamaya karar verdim. Bu proje aynı zamanda PCB tasarımında şebeke gerilimi (220V) ile düşük DC gerilimi aynı kartta izole bir şekilde yönetme pratiği yapmamı sağladı.</p>
+            <h2>Neden Bu Projeyi Yapıyorum?</h2>
+            <p>Elektroniğe ve devre tasarımına giriş niteliğinde olan bu proje, temel komponentlerin (pil, direnç, diyot) Altium Designer üzerinde nasıl şemalandırılacağını ve PCB'ye nasıl döküleceğini anlamak için attığım ilk bebek adımıdır.</p>
         </section>
 
         <section class="content-section">
-            <h2>Şema Çizimi ve Simülasyon Sonuçları</h2>
-            <p>Devrenin girişinde kullandığım EMI filtresi sayesinde şebekeden gelen yüksek frekanslı gürültüleri bastırdım. Altium Designer üzerinde çizdiğim şema ve komponent yerleşimleri aşağıdaki gibidir:</p>
+            <h2>Şema Çizimi</h2>
+            <p>Devrede güç kaynağı olarak 9V pil ve bir adet kırmızı LED kullandım. İlerleyen aşamalarda uygun direnç değerini hesaplayarak akımı sınırladım.</p>
             
             <div class="content-media">
-                <img src="sema-fotografi.jpg" alt="Devre Şeması">
+                <img src="pcb.jpg.png" alt="Devre Şeması">
                 <span class="media-caption">Altium Designer Şema Görünümü</span>
             </div>
         </section>
 
         <section class="content-section">
-            <h2>Üretim ve Lehimleme Süreci</h2>
-            <p>PCB basımı tamamlandıktan sonra komponentleri dizmeye başladım. Özellikle güç hatlarının (trace) kalınlıklarını akım taşıma kapasitelerine göre optimize ettim.</p>
-            
-            <div class="content-media">
-                <img src="uretim-fotografi.jpg" alt="Üretim Aşaması">
-                <span class="media-caption">Bileşenlerin dizgi ve lehimleme aşaması</span>
-            </div>
-        </section>
-
-        <section class="content-section">
-            <h2>Sonuç ve Çalışma Testi</h2>
-            <p>Devreye ilk enerjiyi verdiğimde voltaj regülasyonunun tamamen stabil çalıştığını gördüm. Çıkıştan aldığım sinyali osiloskop ile incelediğimde dalgalanma (ripple) miktarının beklediğim toleranslar içinde olduğunu doğruladım.</p>
-            
-            <div class="content-media">
-                <img src="sonuc-fotografi.jpg" alt="Çalışan Devre">
-                <span class="media-caption">Devrenin laboratuvar ortamında çalıştırılması</span>
-            </div>
+            <h2>Üretim ve Sonuç</h2>
+            <p>Bu bölümü ileride PCB basımı yapıldığında üretim aşaması fotoğrafları ve sonuçla güncelleyeceğim.</p>
         </section>
 
         <a href="index.html" class="back-btn">← Ana Sayfaya Dön</a>
