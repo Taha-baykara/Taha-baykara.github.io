@@ -116,6 +116,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            /* Yükseklik oynamalarını engellemek için min yükseklik eklenebilir, şimdilik auto */
         }
 
         /* Kart Tasarımı */
@@ -125,8 +126,13 @@
             border-radius: 8px;
             overflow: hidden;
             transition: transform 0.3s, border-color 0.3s;
-            display: flex;
+            display: flex; /* JS ile göster/gizle yaparken flex yapısını korumak için */
             flex-direction: column;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .card:hover {
             transform: translateY(-5px);
@@ -177,6 +183,33 @@
             margin-top: auto;
         }
 
+        /* Sayfalandırma (Pagination) Tasarımı */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 3rem;
+        }
+        .page-btn {
+            background-color: #16161a;
+            color: #94a3b8;
+            border: 1px solid #222530;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        .page-btn:hover {
+            border-color: #00ffcc;
+            color: #ffffff;
+        }
+        .page-btn.active {
+            background-color: rgba(0, 255, 204, 0.1);
+            color: #00ffcc;
+            border-color: #00ffcc;
+        }
+
         /* Footer Bölümü */
         footer {
             text-align: center;
@@ -219,10 +252,10 @@
 
         <section id="projeler">
             <h2 class="section-title">Elektronik & PCB Tasarımları</h2>
-            <div class="grid">
+            <div class="grid" id="grid-projeler">
                 
                 <div class="card">
-                    <img src="led.jpg.png" class="card-img" style="object-fit: contain; background-color: #fff;" alt="Güç Kaynağı">
+                    <img src="pcb.jpg.png" class="card-img" style="object-fit: contain; background-color: #fff;" alt="Güç Kaynağı">
                     <div class="card-content">
                         <span class="card-tag">Altium Designer</span>
                         <h3>Güç Kaynağı Kart Tasarımı</h3>
@@ -292,11 +325,12 @@
                 </div>
 
             </div>
+            <div class="pagination" id="pag-projeler"></div>
         </section>
 
         <section id="blog">
             <h2 class="section-title">Teknik & Kişisel Blog</h2>
-            <div class="grid">
+            <div class="grid" id="grid-blog">
                 
                 <div class="card">
                     <div class="card-content">
@@ -328,7 +362,7 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-tag">Otomotiv</span>
-                        <h3>AdBlue Kristalleşmesi ve Sistematik Çözümler</h3>
+                        <h3>AdBlue Kristalleşmesi ve Çözümler</h3>
                         <p>Modern dizel araçların en büyük kronik problemi olan AdBlue enjektör tıkanmaları ve egzoz sistemindeki basınç hatalarına mühendislik bakışı.</p>
                         <div class="card-footer">Şubat 2026</div>
                     </div>
@@ -337,7 +371,7 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-tag">Oyun & Tasarım</span>
-                        <h3>Açık Dünya Görev Tasarımları: RDR2 ve Valhalla</h3>
+                        <h3>Açık Dünya Tasarımları: RDR2 ve Valhalla</h3>
                         <p>Red Dead Redemption 2'nin hikaye anlatım derinliği ile Assassin's Creed Valhalla'nın karakter gelişim mekaniklerinin karşılaştırmalı analizi.</p>
                         <div class="card-footer">Ocak 2026</div>
                     </div>
@@ -362,11 +396,12 @@
                 </div>
 
             </div>
+            <div class="pagination" id="pag-blog"></div>
         </section>
 
         <section id="gezi">
             <h2 class="section-title">Gezi Günlüğü</h2>
-            <div class="grid">
+            <div class="grid" id="grid-gezi">
                 
                 <div class="card">
                     <div class="card-img">[Görsel Alanı: Kalkan]</div>
@@ -398,6 +433,7 @@
                 </div>
 
             </div>
+            <div class="pagination" id="pag-gezi"></div>
         </section>
 
     </div>
@@ -405,6 +441,70 @@
     <footer>
         <p>&copy; 2026 Taha Baykara. Tüm Hakları Saklıdır.</p>
     </footer>
+
+    <script>
+        // Sayfalandırma Fonksiyonu
+        function createPagination(gridId, paginationId, cardsPerPage) {
+            const grid = document.getElementById(gridId);
+            if (!grid) return; // Eğer bölüm yoksa işlemi durdur
+            
+            const cards = Array.from(grid.getElementsByClassName('card'));
+            const paginationContainer = document.getElementById(paginationId);
+            const totalPages = Math.ceil(cards.length / cardsPerPage);
+            
+            // Eğer kart sayısı limitin altındaysa butonları hiç gösterme
+            if (totalPages <= 1) return;
+
+            // İlgili sayfadaki kartları gösteren fonksiyon
+            function showPage(pageNumber) {
+                cards.forEach((card, index) => {
+                    card.style.display = 'none'; // Önce hepsini gizle
+                    
+                    // Sadece tıklanan sayfaya ait olan aralığı göster (Örn: 1. sayfa için 0 ile 5. index arası)
+                    if (index >= (pageNumber - 1) * cardsPerPage && index < pageNumber * cardsPerPage) {
+                        card.style.display = 'flex';
+                    }
+                });
+
+                // Butonların aktiflik durumunu güncelle
+                const buttons = paginationContainer.getElementsByClassName('page-btn');
+                Array.from(buttons).forEach(btn => btn.classList.remove('active'));
+                buttons[pageNumber - 1].classList.add('active');
+            }
+
+            // Sayfa numarası butonlarını oluştur
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement('button');
+                button.innerText = i;
+                button.className = 'page-btn';
+                if (i === 1) button.classList.add('active'); // İlk açılışta 1. buton aktif olsun
+                
+                // Butona tıklanınca ilgili sayfayı aç
+                button.addEventListener('click', () => {
+                    showPage(i);
+                    // Tıklanan bölümün başına yumuşak bir şekilde kay
+                    grid.parentElement.scrollIntoView({ behavior: 'smooth' });
+                });
+                
+                paginationContainer.appendChild(button);
+            }
+
+            // Sayfa ilk yüklendiğinde 1. sayfayı göster
+            showPage(1);
+        }
+
+        // Sayfa tamamen yüklendiğinde fonksiyonları çalıştır
+        document.addEventListener('DOMContentLoaded', () => {
+            // Projeler bölümü için (6 kart limiti)
+            createPagination('grid-projeler', 'pag-projeler', 6);
+            
+            // Blog bölümü için (6 kart limiti)
+            createPagination('grid-blog', 'pag-blog', 6);
+            
+            // Gezi bölümü için (6 kart limiti)
+            createPagination('grid-gezi', 'pag-gezi', 6);
+        });
+    </script>
 
 </body>
 </html>
